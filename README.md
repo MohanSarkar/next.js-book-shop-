@@ -2,7 +2,7 @@
 
 A modern, responsive, and full-featured Book Review & Tracking application built using **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Recharts**.
 
-🚀 **Live Demo:** [https://your-project-name.vercel.app](https://your-project-name.vercel.app) *(Replace with your actual Vercel URL)*
+🚀 **Live Demo:** https://next-js-book-shop.vercel.app/ *(Replace with your actual Vercel URL)*
 
 ---
 
