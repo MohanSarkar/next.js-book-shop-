@@ -1,33 +1,38 @@
-import Image from 'next/image';
-import React from 'react';
-import logo from '@/assets/book.ico';
-import Link from 'next/link';
+'use client';
 
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
+  const pathname = usePathname();
+
+  const getLinkStyle = (path: string) => {
+    const isActive = pathname === path;
+    return isActive
+      ? 'border border-[#23BE0A] text-[#23BE0A] font-semibold px-4 py-2 rounded-lg transition-all'
+      : 'text-gray-600 font-medium px-4 py-2 hover:text-black transition-all';
+  };
+
   const links = (
     <>
       <li>
-        <Link 
-          href="/" 
-          className="border-2 border-[#23BE0A] text-[#23BE0A] font-bold px-5 py-2 rounded-lg hover:bg-[#23BE0A] hover:text-white transition-all"
-        >
+        <Link href="/" className={getLinkStyle('/')}>
           Home
         </Link>
       </li>
       <li>
-        <Link 
-          href="/listed-books" 
-          className="text-gray-600 font-medium px-4 py-2 hover:text-black transition-all"
-        >
+        <Link href="/books" className={getLinkStyle('/books')}>
+          Books
+        </Link>
+      </li>
+      <li>
+        <Link href="/listed-book" className={getLinkStyle('/listed-book')}>
           Listed Books
         </Link>
       </li>
       <li>
-        <Link 
-          href="/pages-to-read" 
-          className="text-gray-600 font-medium px-4 py-2 hover:text-black transition-all"
-        >
+        <Link href="/pages-to-read" className={getLinkStyle('/pages-to-read')}>
           Pages to Read
         </Link>
       </li>
@@ -37,8 +42,6 @@ const Navbar = () => {
   return (
     <div className="bg-white py-4">
       <div className="navbar container mx-auto px-4 md:px-12">
-        
-        {/* Navbar Start: Mobile Dropdown & Logo */}
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden pl-0">
@@ -65,20 +68,17 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Logo Text */}
           <Link href="/" className="text-2xl font-extrabold text-[#131313] tracking-tight">
             Book Vibe
           </Link>
         </div>
 
-        {/* Navbar Center: Desktop Links */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center gap-2">
             {links}
           </ul>
         </div>
 
-        {/* Navbar End: Sign In & Sign Up Buttons */}
         <div className="navbar-end gap-3">
           <button className="btn bg-[#23BE0A] hover:bg-[#1fa308] text-white font-semibold px-6 border-none rounded-lg">
             Sign In
@@ -87,7 +87,6 @@ const Navbar = () => {
             Sign Up
           </button>
         </div>
-
       </div>
     </div>
   );
